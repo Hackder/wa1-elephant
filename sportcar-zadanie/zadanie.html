@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Skúška - UWT sportcar</title>
+</head>
+<body>
+<h1>Skúška - UWT sportcar</h1>
+<p>Naprogramujte stránky systému UWT sportcar, ktorý sa bude  skladať z&nbsp;3 častí: úvod, ponuka a&nbsp;administrácia. </p>
+<p>Všetky potrebné súbory si rozbaľte zo zdrojového súboru. V&nbsp;priečinku je aj súbor <strong>databaza_dump.sql</strong>,  v&nbsp;ktorom sú definície tabuliek aj s&nbsp;ich obsahmi. V&nbsp;tabuľke <strong>sportcar_pouzivatelia</strong> sú všetci používatelia systému, ktorí môžu hodnotiť testovacie autá a môžu si rezervovať termíny testovacích jázd. Ich heslá sú zašifrované pomocou funkcie <strong>MD5</strong> a sú zhodné s&nbsp;prihlasovacím menom. </p>
+<p>Na prácu s&nbsp;databázou (<strong>wa1</strong>) používajte používateľa <strong>root</strong> bez hesla. Pri všetkých  akciách s&nbsp;databázou treba počítať s&nbsp;možnosťou zlyhania a&nbsp;vtedy  treba vypísať nejakú chybovú správu. <strong>Údaje o&nbsp;prístupe do databázy musia byť len na jednom mieste.</strong> </p>
+<p><strong>Nezabudnite kontrolovať a ošetrovať vstupy od používateľov (vo formulároch a v adrese prehliadača).</strong></p>
+<p>&nbsp;</p>
+<p><strong>Úvodnú stránku</strong> (index.php) máte predpripravenú. Môžete ju použiť ako šablónu pre ďalšie stránky. Stačí  keď všetko, čo sa bude vypisovať, dáte do elementu <strong>&lt;section&gt;&lt;/section&gt;</strong>. So samotným  html kódom stránok a&nbsp;dizajnom sa nemusíte veľmi trápiť. Každá stránka musí mať svoj vlastný titulok. </p>
+<p>Ostatné stránky máte tiež predpripravené. Nie je však nutné ich použiť také, ako sú pripravené. Môžete si ich prispôsobiť podľa Vašich potrieb.</p>
+<p>&nbsp;</p>
+<h2>Stránka Administrácia (login.php)</h2>
+<p>Táto stránka by mala umožňovať používateľom prihlásiť  sa/odhlásiť sa. Predpripravenú stránku máte v&nbsp;súbore login.php (spolu s&nbsp;formulármi  na prihlásenie a odhlásenie). Stránka by mala byť logicky rozdelená na tieto  časti: </p>
+<ol>
+	<li>Prihlasovanie       (prihlasovací formulár) </li>
+	<li>Odhlasovanie       (odhlasovací formulár) </li>
+	<li>Korektné       prihlásenie používateľa</li>
+	<li>Chybné       prihlásenie (pokus o&nbsp;prihlásenie so zlými údajmi)</li>
+</ol>
+<p>Pri korektnom prihlásení <strong>akéhokoľvek</strong> používateľa sa vypíše správa &quot;Vitaj v&nbsp;systéme, <strong>meno</strong> <strong>priezvisko</strong>&quot;, kde <strong>meno</strong> a&nbsp;<strong>priezvisko</strong> budú informácie  z&nbsp;databázy. Tieto informácie by sa mali zobrazovať aj vtedy, ak už je  používateľ prihlásený a&nbsp;len klikne na odkaz prihlásenie/odhlásenie  v&nbsp;navigácii. <br>
+	Informáciu o&nbsp;prihlásení si udržiavajte v&nbsp;SESSION.  Zvážte, ktoré údaje si treba pamätať. </p>
+<p>&nbsp;</p>
+<h2>Stránka Ponuka (ponuka.php)</h2>
+<p>Na tejto stránke sa bude zobrazovať zoznam všetkých áut (z tabuľky <strong>sportcar_auta</strong>), pre ktoré sa dajú objednať testovacie jazdy. Zoznam áut bude vzostupne usporiadaný podľa názvu.  V&nbsp;prípade, že v&nbsp;tabuľke <strong>sportcar_auta</strong> nie je žiadne auto, vypíše  sa o&nbsp;tom správa. Ak existuje obrázok k autu, zobrazí sa. V&nbsp;priečinku <strong>obrazky</strong> sú obrázky áut, ktoré treba použiť. Ich názvy sú totožné s indexami v tabuľke sportcar_auta.</p>
+<p>Pri každom aute sa zobrazí priemerné hodnotenie daného auta používateľmi z tabuľky <strong>sportcar_hodnotenie</strong> (<strong>idc</strong> - ID číslo auta z tabuľky sportcar_auta, <strong>body</strong> - pridelené bodové hodnotenie používateľa). Na rýchle vypočítanie priemeru môžete využiť funkciu databázy MySQL - AVG().</p>
+<p>Ak je <strong>prihlásený</strong> ľubovoľný používateľ, môže hodnotiť dané auto (stránka <strong>hodnotenie.php</strong>) a rezervovať si testovaciu jazdu pre dané auto (stránka <strong>jazda.php</strong>).</p>
+
+<p>&nbsp;</p>
+<h2>Hodnotenie testovacích áut (hodnotenie.php)</h2>
+<p>Táto časť je prístupná len prihláseným používateľom.</p>
+<p>Na tejto stránke sa zobrazí názov auta a výberová ponuka hodnotenia (hodnoty 1 - 5). Ak už daný používateľ hodnotil príslušné auto, jeho hodnotenie bude prednastavené vo výberovej ponuke. Po odoslaní neprázdneho hodnotenia sa zapíše do tabuľky hodnotení (sportcar_hodnotenie):</p>
+<ul>
+	<li>Ak už používateľ hodnotil, jeho hodnotenie sa aktualizuje (<strong>uid</strong> - ID číslo prihláseného používateľa, <strong>idc</strong> - ID číslo auta, <strong>body</strong> - zadané bodové hodnotenie používateľa).</li>
+	<li>Ak používateľ ešte NEhodnotil dané auto, jeho hodnotenie sa pridá (ako nový záznam) do tabuľky sportcar_hodnotenie.</li>
+</ul>
+<p>Okrem pridávania/aktualizovania hodnotenia môže používateľ zrušiť svoje predchádzajúce hodnotenie. </p>
+<p>Spôsob pridávania/upravovania/mazania hodnotenia si zvoľte podľa seba. Môžete sa inšpirovať ukážkou, ale môžete to vyriešiť aj úplne inak. </p>
+
+<p>&nbsp;</p>
+<h2>Rezervácia termínu testovacej jazdy (jazda.php)</h2>
+<p>Táto časť je prístupná len prihláseným používateľom.</p>
+<p>Na tejto stránke sa zobrazí meno prihláseného používateľa, názov auta a všetky <strong>voľné</strong> termíny testovacích jázd <strong>z budúcnosti</strong> pre zvolené auto (môžete využiť funkciu databázy MySQL - NOW()). Pre dané auto môže byť každý termín použitý len raz. Spôsob vyberania termínu si zvoľte podľa seba.</p> 
+<p>Rezervácie treba zapísať v tabuľke <strong>sportcar_terminy</strong> a to tak, že ID číslo používateľa nastavíte v položke <strong>uid</strong> pre zadaný termín jazdy (<strong>idt</strong>) pre zvolené auto (<strong>idc</strong>).</p>
+
+<p>&nbsp;</p>
+<h2>Testovacia aplikácia</h2>
+<ul>
+	<li>Ukážku výslednej aplikácie si môžete pozrieť na stránke <a href="http://www.st.fmph.uniba.sk/~hrusecky1/wa1/sportcar-riesenie/login.php" target="_blank">http://www.st.fmph.uniba.sk/~hrusecky1/wa1/sportcar-riesenie/login.php</a>.</li>
+</ul>
+</body>
+</html>

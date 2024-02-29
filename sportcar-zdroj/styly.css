@@ -1,0 +1,86 @@
+body {
+	background-color: #FFFFFF;
+	font-family: Tahoma, Geneva, sans-serif;
+	margin: 0;
+	padding: 0;
+}
+#main {
+  background-color: rgb(51, 51, 51);
+  padding-left: 150px;
+}
+header {
+  padding: 1em;
+	background-image: url('obrazky/pozadie.gif');
+	background-repeat: repeat;
+	border-top-right-radius: 2em;
+}
+h1 {
+  margin: 0;
+  color: rgb(51, 51, 51);
+  text-align: right;
+}
+#dekoracne_obr {
+  width: 150px;
+  background-color: rgb(51, 51, 51);
+  float: left;
+  display: block;
+}
+nav {
+	height: 2em;
+  padding-top: 0.5em;
+}
+nav a {
+  color: rgb(184, 152, 111);
+  padding: 0 1em;
+  text-decoration: none;
+  border-right: 5px double rgb(184, 152, 111); 
+}
+nav a:hover {
+  color: #FFFFFF;
+}
+section {
+	color: rgb(51, 51, 51);
+	background-image: url('obrazky/pozadie.gif');
+	background-repeat: repeat;
+	padding: 1% 21% 1% 1%;
+	border-bottom-left-radius: 2em;
+}
+section a {
+  color: #FFFFFF;
+  font-weight: bold;
+}
+section th, section td {
+  border-bottom: 1px solid rgb(51, 51, 51);
+}
+aside {
+  background-color: rgb(219, 193, 163);
+  color: rgb(51, 51, 51);
+  padding: 0.5%;
+  width: 19%;
+  float: right;
+}
+footer {
+	color: #FFFFFF;
+	background-color: rgb(51, 51, 51);
+	font-size: 0.8em;
+	text-align: right;
+	padding: 0.5%;
+}
+fieldset {
+	border: 1px solid rgb(51, 51, 51);
+	padding: 0.5em;
+}
+legend {
+	color: rgb(51, 51, 51);
+	font-weight: bold;
+	padding: 0 0.5em;
+}
+.chyba {
+	color: rgb(159, 0, 0);
+}
+.ok {
+	color: #0000FF;
+}
+.centruj {
+	text-align: center;
+}
